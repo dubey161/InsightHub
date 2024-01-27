@@ -6,10 +6,13 @@ import SignUp from "./pages/SignUp"
 import DashBoard from "./pages/DashBoard"
 import Project from "./pages/Project"
 import About from "./pages/About"
+import Header from "./components/Header"
 function App() {
 
   return (
     <BrowserRouter>
+      {/* as header is at all page */}
+      <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
