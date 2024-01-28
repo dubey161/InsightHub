@@ -7,6 +7,7 @@ import DashBoard from "./pages/DashBoard"
 import Project from "./pages/Project"
 import About from "./pages/About"
 import Header from "./components/Header"
+import FooterComp from "./components/Footer"
 function App() {
 
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/dashboard' element={<DashBoard />} />
         <Route path='/projects' element={<Project />} />
       </Routes>
+      <FooterComp />
     </BrowserRouter>
   )
 }
