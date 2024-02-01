@@ -68,7 +68,7 @@ const SignUp = () => {
                         </div>
                         <Button gradientDuoTone='purpleToPink' type='submit' disabled={loading}>
                             {
-                                !errorMessage && loading ? (
+                                loading ? (
                                     <>
                                         <Spinner size='sm' />
                                         <span>Loading...</span>
