@@ -29,7 +29,7 @@ const OAuth = () => {
                 dispatch(signInSuccess(data));
                 navigate('/');
             }
-            console.log(resultFromGoogle);
+            // console.log(resultFromGoogle);
         } catch (error) {
             console.log(error);
         }
