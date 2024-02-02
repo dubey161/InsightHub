@@ -137,6 +137,21 @@ const DashProfile = () => {
             dispatch(deleteUserFailure(error.message));
         }
     };
+    const handleSignout = async () => {
+        try {
+            const res = await fetch('/api/user/signout', {
+                method: 'POST',
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                console.log();
+            } else {
+                dispatch(signoutSuccess())
+            }
+        } catch (error) {
+
+        }
+    }
     const filePickerRef = useRef(); //used to remove choose file option
     return (
         <div className='max-w-lg mx-auto p-3 w-full'>
@@ -184,7 +199,7 @@ const DashProfile = () => {
             </form>
             <div className='text-red-500 flex justify-between mt-5'>
                 <span className='cursor-pointer' onClick={() => setShowModal(true)}>Delete Account</span>
-                <span className='cursor-pointer'>Sign Out</span>
+                <span className='cursor-pointer' onClick={handleSignout}>Sign Out</span>
             </div>
 
             {updateUserSuccess && (
