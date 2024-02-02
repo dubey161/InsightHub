@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO).then(() => {
 })
 
 const app = express();
-app.use(cookieParser);
+app.use(cookieParser());
 app.listen(3000, () => {
     console.log('server is running at 3000');
 })
