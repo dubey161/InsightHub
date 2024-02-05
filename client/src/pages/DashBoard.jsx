@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import DashSidebar from '../components/DashSidebar';
 import DashProfile from '../components/DashProfile';
+import DashPosts from '../components/DashPosts';
 import { useLocation } from 'react-router-dom';
 
 const DashBoard = () => {
@@ -31,6 +32,9 @@ Yeh dashboard component URL se 'tab' query parameter ko extract karke uske corre
             </div>
             {/* profile */}
             {tab === 'profile' && <DashProfile />}
+
+            {/* posts */}
+            {tab === 'posts' && <DashPosts />}
         </div>
     );
 }
