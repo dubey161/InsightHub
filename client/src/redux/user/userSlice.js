@@ -4,6 +4,7 @@ const initialState = {
     currentUser: null,
     error: null,
     loading: false,
+    signoutmessage: "",
 };
 
 const userSlice = createSlice({
@@ -53,6 +54,7 @@ const userSlice = createSlice({
             state.currentUser = null;
             state.error = null;
             state.loading = false;
+            state.signoutmessage = 'User Signout Successfully'
         },
     },
 });

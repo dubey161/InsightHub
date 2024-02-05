@@ -32,7 +32,7 @@ const DashProfile = () => {
         const file = e.target.files[0];
         if (file) {
             setImageFile(file);
-            setImageFileUrl(URL.createObjectURL(file));
+            setImageFileUrl(URL.createObjectURL(file)); // set image to url 
         }
     }
     useEffect(() => {
@@ -146,10 +146,10 @@ const DashProfile = () => {
             if (!res.ok) {
                 console.log();
             } else {
-                dispatch(signoutSuccess())
+                dispatch(signoutSuccess());
             }
         } catch (error) {
-
+            window.alert(error);
         }
     }
     const filePickerRef = useRef(); //used to remove choose file option
@@ -157,9 +157,10 @@ const DashProfile = () => {
         <div className='max-w-lg mx-auto p-3 w-full'>
             <h1 className='my-7 text-centre font-semibold text-3xl ml-20'>Profile</h1>
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-                <input type="file" accept='image/*' onChange={handleImageChange} hidden ref={filePickerRef} />
+                <input type="file" hidden accept='image/*' onChange={handleImageChange} ref={filePickerRef} />
                 <div className='relative w-32 h-32 self-centre cursor-pointer shadow-md overflow-hidden rounded-full ml-32' onClick={() => filePickerRef.current.click()}>
 
+                    {/* these lines are for the circular bar progrss  */}
                     {imageFileUploadProgress && (
                         <CircularProgressbar value={imageFileUploadProgress || 0} text={`${imageFileUploadProgress}%`}
                             strokeWidth={5}
@@ -201,7 +202,6 @@ const DashProfile = () => {
                 <span className='cursor-pointer' onClick={() => setShowModal(true)}>Delete Account</span>
                 <span className='cursor-pointer' onClick={handleSignout}>Sign Out</span>
             </div>
-
             {updateUserSuccess && (
                 <Alert color='success' className='mt-5'>
                     {updateUserSuccess}

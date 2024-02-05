@@ -11,11 +11,14 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { signoutSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
+
+
 const DashSidebar = () => {
     const dispatch = useDispatch();
 
     const location = useLocation();
     const [tab, setTab] = useState(' ');
+
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const tabFormUrl = urlParams.get('tab');
@@ -30,12 +33,12 @@ const DashSidebar = () => {
             });
             const data = await res.json();
             if (!res.ok) {
-                console.log();
+                window.alert("Sorry can't signout");
             } else {
-                dispatch(signoutSuccess())
+                dispatch(signoutSuccess());
             }
         } catch (error) {
-
+            console.log(error);
         }
     }
     return (

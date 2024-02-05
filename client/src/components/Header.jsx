@@ -1,5 +1,5 @@
 import { Button, Navbar, TextInput, Dropdown, Avatar } from 'flowbite-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon, FaSun } from "react-icons/fa"
@@ -9,8 +9,9 @@ import { signoutSuccess } from '../redux/user/userSlice';
 const Header = () => {
     const path = useLocation().pathname;
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(state => state.user);
+    const { currentUser } = useSelector(state => state.user);  // siginsuccess ka data yani abhi currentuse me data hai sigin ka jo authinacte hua hai backend authcontroller se;
     const { theme } = useSelector(state => state.theme);
+    const [boolsignout, setboolsignout] = useState(false);
     const handleSignout = async () => {
         try {
             const res = await fetch('/api/user/signout', {
@@ -18,12 +19,13 @@ const Header = () => {
             });
             const data = await res.json();
             if (!res.ok) {
-                console.log();
+                console.log(data);
             } else {
-                dispatch(signoutSuccess())
+                dispatch(signoutSuccess());
+                setboolsignout(true);
             }
         } catch (error) {
-
+            window.alert(error);
         }
     }
     return (
@@ -47,7 +49,7 @@ const Header = () => {
                 <Button className='w-12 h-10 hidden sm:inline' color='gray' pill onClick={() => dispatch(toggleTheme())}>
                     {theme === 'light' ? <FaSun /> : <FaMoon />}
                 </Button>
-                {currentUser ? (
+                {currentUser ? ( // if currentuser exit means first user signin then data send in currentuser
                     <Dropdown
                         arrowIcon={false}
                         inline
@@ -68,7 +70,6 @@ const Header = () => {
                         </Link>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
-
                     </Dropdown>
                 ) : (
                     <Link to='/sign-in'>
@@ -79,8 +80,18 @@ const Header = () => {
 
                 )}
                 <Navbar.Toggle />
+                {boolsignout && (
+                    <>
+                        {window.alert('User signed out successfully')}
+                        {setboolsignout(false)}
+                    </>
+                )}
+
+
+
             </div>
             <Navbar.Collapse>
+                {/* path is used to make active it use useloaction; */}
                 <Navbar.Link active={path === '/'} as={'div'}>
                     <Link to='/'>
                         Home
