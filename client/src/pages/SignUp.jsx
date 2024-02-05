@@ -31,6 +31,7 @@ const SignUp = () => {
             }
 
             if (res.ok) {
+                // This condition checks if the HTTP response status is within the range of 200-299, indicating a successful request. If the request was successful, it navigates the user to the '/sign-in' page
                 navigate('/sign-in');
             }
         } catch (error) {

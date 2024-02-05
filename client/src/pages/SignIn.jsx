@@ -27,12 +27,12 @@ const SignIn = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
-            const data = await res.json();
+            const data = await res.json();  // ye data backend authcontroller se user authorize hone ke baad aayegi;
             if (data.success === false) {
                 dispatch(signInFailure(data.message));
             }
             if (res.ok) {
-                dispatch(signInSuccess(data));
+                dispatch(signInSuccess(data)); // siginsuccess me data dal denge
                 navigate('/');
             }
         } catch (error) {
