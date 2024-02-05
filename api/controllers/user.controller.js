@@ -66,6 +66,7 @@ export const deleteUser = async (req, res, next) => {
     }
 };
 
+/* Yeh function server-side par ek sign-out operation ko handle karta hai. Yahaan, clearCookie() function ka istemal kiya jata hai 'access_token' cookie ko clear karne ke liye, jo typically user ki authentication ko represent karta hai. Fir, status(200) ke zariye server ka response status code ko 200 OK set kiya jata hai, aur .json('User has been signed out') ke zariye client ko ek JSON response bheja jata hai jismein sign-out ka message shamil hota hai. Agar koi error hota hai, to catch block mein next(error) ke zariye error ko agle middleware ya error handler mein bhej diya jata hai. */
 export const signout = (req, res, next) => {
     try {
         res
