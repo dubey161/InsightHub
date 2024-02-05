@@ -22,6 +22,7 @@ export default function CreatePost() {
 
     const navigate = useNavigate();
 
+    // same as done in update image in dashprofile.jsx
     const handleUpdloadImage = async () => {
         try {
             if (!file) {
@@ -139,7 +140,7 @@ export default function CreatePost() {
                     <img
                         src={formData.image}
                         alt='upload'
-                        className='w-full h-72 object-cover'
+                        className='w-full h-80 object-cover'
                     />
                 )}
                 <ReactQuill
