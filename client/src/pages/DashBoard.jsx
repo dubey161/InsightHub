@@ -4,6 +4,7 @@ import DashProfile from '../components/DashProfile';
 import DashPosts from '../components/DashPosts';
 import { useLocation } from 'react-router-dom';
 import DashUsers from '../components/DashUsers';
+import DashComment from '../components/DashComment';
 
 const DashBoard = () => {
 
@@ -39,6 +40,8 @@ Yeh dashboard component URL se 'tab' query parameter ko extract karke uske corre
 
             {/* users */}
             {tab === 'users' && <DashUsers />}
+            {/* Comments */}
+            {tab === 'comments' && <DashComment />}
         </div>
     );
 }

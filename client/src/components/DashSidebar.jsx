@@ -70,6 +70,17 @@ const DashSidebar = () => {
                             </Sidebar.Item>
                         </Link>
                     )}
+
+                    {currentUser.isAdmin && (
+                        <Link to='/dashboard?tab=comments'>
+                            <Sidebar.Item
+                                active={tab == 'comments'}
+                                icon={HiAnnotation}
+                                as='div'>
+                                Comments
+                            </Sidebar.Item>
+                        </Link>
+                    )}
                     <Sidebar.Item icon={HiArrowSmRight} className='cursor-pointer' onClick={handleSignout}>
                         Sign Out
                     </Sidebar.Item>
