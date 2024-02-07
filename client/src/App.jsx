@@ -13,10 +13,12 @@ import PrivateAdminRoute from "./components/PrivateAdminRoute"
 import CreatePost from "./pages/CreatePost"
 import UpdatePost from "./pages/UpdatePost"
 import PostPage from "./pages/PostPage"
+import ScrollToTp from './components/ScrollToTp';
 function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTp />
       {/* as header is at all page */}
       <Header />
       <Routes>
