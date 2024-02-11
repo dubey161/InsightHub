@@ -27,6 +27,7 @@ const SignUp = () => {
             });
             const data = await res.json();
             if (data.success === false) {
+                setLoading(false);
                 return setErrorMessage(data.message);
             }
 
@@ -49,7 +50,7 @@ const SignUp = () => {
                         <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>InSightHub </span>
                         Blog
                     </Link>
-                    <p className='text-sm mt-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, a.</p>
+                    <p className='text-sm mt-5'> InSightHub Blog Website is built as a personal project to share his thoughts and ideas with the world.</p>
                 </div>
                 {/* right */}
                 <div className='flex-1'>

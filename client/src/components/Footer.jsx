@@ -1,7 +1,7 @@
 import React from 'react'
 import { Footer } from 'flowbite-react'
 import { Link } from 'react-router-dom'
-import { BsFacebook, BsInstagram, BsTwitter, BsGithub, BsDribbble } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsGithub, BsDribbble, BsLinkedin } from "react-icons/bs";
 const FooterComp = () => {
     return (
         <Footer container className='border border-t-8 border-teal-500'>
@@ -17,11 +17,11 @@ const FooterComp = () => {
                         <div>
                             <Footer.Title title='About' />
                             <Footer.LinkGroup col>
-                                <Footer.Link href='https:www.100jsprojects.com' target='_blank' rel='noopener noreferrer'>
+                                <Footer.Link href='https://github.com/dubey161' target='_blank' rel='noopener noreferrer'>
                                     100 JS Projects
                                 </Footer.Link>
 
-                                <Footer.Link href='https:www.100jsprojects.com' target='_blank' rel='noopener noreferrer'>
+                                <Footer.Link href='https://github.com/dubey161' target='_blank' rel='noopener noreferrer'>
                                     InSightHub Blog
                                 </Footer.Link>
                             </Footer.LinkGroup>
@@ -30,11 +30,11 @@ const FooterComp = () => {
                         <div>
                             <Footer.Title title='FOLLOW US' />
                             <Footer.LinkGroup col>
-                                <Footer.Link href='https:www.100jsprojects.com' target='_blank' rel='noopener noreferrer'>
+                                <Footer.Link href='https://github.com/dubey161' target='_blank' rel='noopener noreferrer'>
                                     Github
                                 </Footer.Link>
 
-                                <Footer.Link href='https:www.100jsprojects.com' target='_blank' rel='noopener noreferrer'>
+                                <Footer.Link href='https://github.com/dubey161' target='_blank' rel='noopener noreferrer'>
                                     Discord
                                 </Footer.Link>
                             </Footer.LinkGroup>
@@ -59,11 +59,11 @@ const FooterComp = () => {
                 <div className='w-full sm:flex sm:items-centre sm:justify-between'>
                     <Footer.Copyright href='#' by="Ved InSightHub Group" year={new Date().getFullYear()} />
                     <div className='flex gap-6 sm:mt-0 mt-4 sm:justify-centre'>
-                        <Footer.Icon href='#' icon={BsFacebook} />
-                        <Footer.Icon href='#' icon={BsInstagram} />
-                        <Footer.Icon href='#' icon={BsTwitter} />
-                        <Footer.Icon href='#' icon={BsGithub} />
-                        <Footer.Icon href='#' icon={BsDribbble} />
+                        <Footer.Icon href='#' target='_blank' icon={BsFacebook} />
+                        <Footer.Icon href='https://www.instagram.com/ved_528/' target='_blank' icon={BsInstagram} />
+                        <Footer.Icon href='https://github.com/dubey161' target='_blank' icon={BsGithub} />
+                        <Footer.Icon href='https://github.com/dubey161' target='_blank' icon={BsDribbble} />
+                        <Footer.Icon href='https://www.linkedin.com/in/ved-prakash-dubey-696b68215/' target='_blank' icon={BsLinkedin} />
                     </div>
                 </div>
             </div>

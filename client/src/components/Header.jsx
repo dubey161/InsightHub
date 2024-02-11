@@ -47,6 +47,9 @@ const Header = () => {
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
     };
+    const handlesmall = () => {
+        navigate(`/search`);
+    }
     return (
         <Navbar className='border-b-2'>
             <Link to="/" className='self-centre whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
@@ -63,11 +66,11 @@ const Header = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </form>
-            <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+            <Button className='w-12 h-10 lg:hidden' color='gray' pill onClick={handlesmall}>
                 <AiOutlineSearch />
             </Button>
             <div className='flex gap-2 md:order-2'>
-                <Button className='w-12 h-10 hidden sm:inline' color='gray' pill onClick={() => dispatch(toggleTheme())}>
+                <Button className='w-12 h-10 sm:inline' color='gray' pill onClick={() => dispatch(toggleTheme())}>
                     {theme === 'light' ? <FaSun /> : <FaMoon />}
                 </Button>
                 {currentUser ? ( // if currentuser exit means first user signin then data send in currentuser

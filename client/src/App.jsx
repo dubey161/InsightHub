@@ -14,7 +14,8 @@ import CreatePost from "./pages/CreatePost"
 import UpdatePost from "./pages/UpdatePost"
 import PostPage from "./pages/PostPage"
 import ScrollToTp from './components/ScrollToTp';
-import Search from "./pages/Search"
+import Search from "./pages/Search";
+import Paymentsuccess from "./pages/paymentsuccess"
 function App() {
 
   return (
@@ -38,6 +39,7 @@ function App() {
         </Route>
         <Route path='/projects' element={<Project />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
+        <Route path='/paymentsuccess' element={<Paymentsuccess />} />
       </Routes>
       <FooterComp />
     </BrowserRouter>

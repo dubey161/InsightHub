@@ -47,7 +47,7 @@ const DashSidebar = () => {
                 <Sidebar.ItemGroup className='flex flex-col gap-1'>
                     {
                         currentUser && currentUser.isAdmin && (
-                            <Link to='/dashboard?tab=profile'>
+                            <Link to='/dashboard?tab=dash'>
                                 <Sidebar.Item active={tab === 'dash' || !tab} icon={HiChartPie}
                                     as='div'>
                                     Dashboard
