@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import Razorpay from 'razorpay';
 import PaymentRoutes from "./routes/payment.route.js";
 import cors from "cors";
+import path from 'path';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGO).then(() => {
     console.log(err);
 })
 
+const __dirname = path.resolve();
 const app = express();
 
 app.use(cookieParser());
@@ -39,6 +41,12 @@ app.use('/api', PaymentRoutes);
 
 app.get("/api/getKey", (req, res) =>
     res.status(200).json({ key: process.env.RAZORPAY_API_KEY }));
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
