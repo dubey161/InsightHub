@@ -4,10 +4,12 @@ import { persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 import persistStore from 'redux-persist/es/persistStore';
 import themeReducer from './theme/themeSlice';
+import cartReducer from './user/CartSlice';
 
 const rootReducer = combineReducers({
     user: userReducer,
     theme: themeReducer,
+    cart: cartReducer,
 })
 
 const persistConfig = {

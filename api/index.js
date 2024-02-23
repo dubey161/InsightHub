@@ -8,9 +8,11 @@ import commentRoutes from "./routes/comment.route.js"
 import cookieParser from 'cookie-parser';
 import Razorpay from 'razorpay';
 import PaymentRoutes from "./routes/payment.route.js";
+import BookRoutes from "./routes/book.route.js"
+import bodyParser from 'body-parser';
 import cors from "cors";
 import path from 'path';
-
+import Stripe from 'stripe';
 dotenv.config();
 
 mongoose.connect(process.env.MONGO).then(() => {
@@ -31,6 +33,7 @@ app.listen(3000, () => {
 })
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }))
 // use the userroute from router
 app.use('/api/user', userRoutes);
@@ -38,6 +41,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
 app.use('/api', PaymentRoutes);
+app.use('/api/book', BookRoutes);
 
 app.get("/api/getKey", (req, res) =>
     res.status(200).json({ key: process.env.RAZORPAY_API_KEY }));
@@ -65,4 +69,9 @@ export const instance = new Razorpay({
     key_id: process.env.RAZORPAY_API_KEY,
     key_secret: process.env.RAZORPAY_API_SECRET,
 })
+
+// Stripe payment
+// Stripe payment
+
+
 

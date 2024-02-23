@@ -6,7 +6,8 @@ import { useLocation } from 'react-router-dom';
 import DashUsers from '../components/DashUsers';
 import DashComment from '../components/DashComment';
 import DashboardComp from '../components/DashBoradComp';
-
+import DashboardBook from '../components/DashboardBook';
+import DashBooks from '../components/DashBooks';
 const DashBoard = () => {
 
     /* const location = useLocation();: Is line mein useLocation() hook ka istemal kiya gaya hai current URL ke information ko access karne ke liye.
@@ -45,6 +46,10 @@ Yeh dashboard component URL se 'tab' query parameter ko extract karke uske corre
             {tab === 'comments' && <DashComment />}
             {/* DashComp */}
             {tab === 'dash' && <DashboardComp />}
+            {/* Create new book */}
+            {tab === 'book' && <DashboardBook />}
+            {/* All books */}
+            {tab === 'allbook' && <DashBooks />}
         </div>
     );
 }

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import {
     HiAnnotation,
     HiArrowNarrowUp,
+    HiBookOpen,
     HiDocumentText,
     HiOutlineUserGroup,
 } from 'react-icons/hi';
@@ -19,6 +20,9 @@ export default function DashboardComp() {
     const [lastMonthUsers, setLastMonthUsers] = useState(0);
     const [lastMonthPosts, setLastMonthPosts] = useState(0);
     const [lastMonthComments, setLastMonthComments] = useState(0);
+    const [books, setTotalbooks] = useState(0);
+    const [lastMonthBooks, setLastMonthBooks] = useState(0);
+
     const { currentUser } = useSelector((state) => state.user);
     useEffect(() => {
         const fetchUsers = async () => {
@@ -47,6 +51,19 @@ export default function DashboardComp() {
                 console.log(error.message);
             }
         };
+
+        const fetchBooks = async () => {
+            try {
+                const res = await fetch('/api/book/getbooks?limit=5');
+                const data = await res.json();
+                if (res.ok) {
+                    setTotalbooks(data.totalBooks);
+                    setLastMonthBooks(data.lastMonthBooks);
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
         const fetchComments = async () => {
             try {
                 const res = await fetch('/api/comment/getcomments?limit=5');
@@ -64,6 +81,7 @@ export default function DashboardComp() {
             fetchUsers();
             fetchPosts();
             fetchComments();
+            fetchBooks();
         }
     }, [currentUser]);
     return (
@@ -119,6 +137,24 @@ export default function DashboardComp() {
                         <div className='text-gray-500'>Last month</div>
                     </div>
                 </div>
+
+                <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+                    <div className='flex justify-between'>
+                        <div className=''>
+                            <h3 className='text-gray-500 text-md uppercase'>Total Books</h3>
+                            <p className='text-2xl'>{books}</p>
+                        </div>
+                        <HiBookOpen className='bg-yellow-400  text-white rounded-full text-5xl p-3 shadow-lg' />
+                    </div>
+                    <div className='flex  gap-2 text-sm'>
+                        <span className='text-green-500 flex items-center'>
+                            <HiArrowNarrowUp />
+                            {lastMonthBooks}
+                        </span>
+                        <div className='text-gray-500'>Last month</div>
+                    </div>
+                </div>
+
             </div>
             <div className='flex flex-wrap gap-4 py-3 mx-auto justify-center'>
                 <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>

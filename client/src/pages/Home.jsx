@@ -10,6 +10,7 @@ export default function Home() {
         const fetchPosts = async () => {
             const res = await fetch('/api/post/getPosts');
             const data = await res.json();
+            console.log(data);
             setPosts(data.posts);
         };
         fetchPosts();

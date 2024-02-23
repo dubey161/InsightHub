@@ -12,10 +12,13 @@ const Header = () => {
     const location = useLocation();
     const [searchTerm, setSearchTerm] = useState('');
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(state => state.user);  // siginsuccess ka data yani abhi currentuse me data hai sigin ka jo authinacte hua hai backend authcontroller se;
+    const { quantity } = useSelector(state => state.cart);  // siginsuccess ka data yani abhi currentuse me data hai sigin ka jo authinacte hua hai backend authcontroller se;
+    const { currentUser } = useSelector(state => state.user);
     const { theme } = useSelector(state => state.theme);
     const navigate = useNavigate();
     const [boolsignout, setboolsignout] = useState(false);
+    const [toggle, toggleserach] = useState(true);
+    const [notsearch, setnotsearch] = useState(true);
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
@@ -35,6 +38,7 @@ const Header = () => {
             } else {
                 dispatch(signoutSuccess());
                 setboolsignout(true);
+                navigate('/');
             }
         } catch (error) {
             window.alert(error);
@@ -48,7 +52,15 @@ const Header = () => {
         navigate(`/search?${searchQuery}`);
     };
     const handlesmall = () => {
-        navigate(`/search`);
+        if (toggle) {
+            navigate(`/search`);
+            toggleserach(false);
+            setnotsearch(false);
+        } else {
+            navigate('/');
+            toggleserach(true);
+            setnotsearch(true);
+        }
     }
     return (
         <Navbar className='border-b-2'>
@@ -97,7 +109,7 @@ const Header = () => {
                     </Dropdown>
                 ) : (
                     <Link to='/sign-in'>
-                        <Button gradientDuoTone='purpleToBlue' outline>
+                        <Button gradientDuoTone='purpleToBlue' outline className='font-sm ml-36 mt-1 md:ml-0 md:mt-0'>
                             Sign In
                         </Button>
                     </Link>
@@ -114,7 +126,7 @@ const Header = () => {
 
 
             </div>
-            <Navbar.Collapse>
+            {notsearch && <Navbar.Collapse>
                 {/* path is used to make active it use useloaction; */}
                 <Navbar.Link active={path === '/'} as={'div'}>
                     <Link to='/'>
@@ -131,7 +143,15 @@ const Header = () => {
                         Projects
                     </Link>
                 </Navbar.Link>
-            </Navbar.Collapse>
+                {currentUser &&
+                    <Navbar.Link active={path === '/Cart'} as={'div'}>
+                        <Link to='/Cart'>
+                            Cart
+                            {quantity != 0 && <sup className='text-red-500 text-md'>{quantity}</sup>}
+                        </Link>
+                    </Navbar.Link>
+                }
+            </Navbar.Collapse>}
         </Navbar>
     )
 }

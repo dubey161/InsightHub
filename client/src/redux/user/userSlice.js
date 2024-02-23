@@ -5,6 +5,8 @@ const initialState = {
     error: null,
     loading: false,
     signoutmessage: "",
+    quantity: 0,
+    currbook: [],
 };
 
 const userSlice = createSlice({
@@ -55,7 +57,7 @@ const userSlice = createSlice({
             state.error = null;
             state.loading = false;
             state.signoutmessage = 'User Signout Successfully'
-        },
+        }
     },
 });
 
@@ -70,6 +72,9 @@ export const {
     deleteUserSuccess,
     deleteUserFailure,
     signoutSuccess,
+    AddtoCart,
+    RemoveOne,
+    ClearCart
 } = userSlice.actions;
 
 export default userSlice.reducer;

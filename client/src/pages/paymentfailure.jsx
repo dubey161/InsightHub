@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-const Paymentsuccess = () => {
+const Paymentfailure = () => {
     const location = useLocation();
     const [tab, setTab] = useState(' ');
     useEffect(() => {
@@ -16,18 +16,15 @@ const Paymentsuccess = () => {
             <div className='flex flex-col sm:flex-row p-3  justify-center items-center text-center min-h-screen'>
                 <div className="flex-1 justify-center flex flex-col">
                     <h1 className='text-2xl'>
-                        Payment Successful
+                        Payment Failed 🤔
                     </h1>
-
-                    <h2>Your Order ID :
-                        pm_1OlzH5SBXV4W185O43pFe2cR</h2>
                 </div>
                 <div className="p-7 flex-1">
-                    <img src="https://momentumacademy.net/wp-content/uploads/2020/05/Paymentsuccessful21.png" />
+                    <img src="https://miro.medium.com/v2/resize:fit:810/1*OkeqV425CNZUQT2HSkTnJA.png" />
                 </div>
             </div>
         </div>
     )
 }
 
-export default Paymentsuccess
+export default Paymentfailure

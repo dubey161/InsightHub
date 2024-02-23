@@ -1,60 +1,58 @@
 import { Button } from 'flowbite-react';
 import axios from "axios";
 import { useSelector } from 'react-redux';
+import { toast } from "react-hot-toast";
+import { loadStripe } from "@stripe/stripe-js"
 export default function CallToAction() {
-    let amount = 100;
+    const { currentUser } = useSelector(state => state.user);
+    console.log(currentUser);
+    const handleProceedtoPay = async () => {
 
-    const checkoutHandler = async (amount) => {
+        const stripePromise = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+        console.log("ok");
+        const res = await fetch('/api/contribute-ment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(currentUser),
+        });
 
-        const { data: { key } } = await axios.get("http://localhost:3000/api/getKey");
+        if (res.status === 500) {
+            // Handle error
+            return;
+        }
 
+        const data = await res.json();
+        console.log(data); // Check the structure of data to see if sessionId is available
 
-        const { data: { order } } = await axios.post("http://localhost:3000/api/checkout", {
-            amount
-        })
-        const options = {
-            key,
-            "amount": order.amount,
-            "currency": "INR",
-            "name": "Ved Prakash Dubey",
-            "description": "Blog Application",
-            "image": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-            "order_id": order.id,
-            "callback_url": "http://localhost:3000/api/paymentVerification",
-            "prefill": {
-                "name": "Ved", //your customer's name
-                "email": "v@gmail.com",
-                "contact": "9935563896" //Provide the customer's phone number for better conversion rates 
-            },
-            "notes": {
-                "address": "Razorpay Corporate Office"
-            },
-            "theme": {
-                "color": "#121212"
-            }
-        };
-        const razor = new window.Razorpay(options);
-        razor.open();
-    }
+        if (typeof data.id !== 'string') {
+            // Handle error if sessionId is missing or not a string
+            console.error('Invalid sessionId received:', data);
+            return;
+        }
 
+        toast("Redirect to Payment Gateway...!");
+        console.log(data);
+        stripePromise.redirectToCheckout({ sessionId: data.id });
+
+    };
 
     return (
         <div className='flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center'>
             <div className="flex-1 justify-center flex flex-col">
                 <h2 className='text-2xl'>
-                    Want to learn more about JavaScript?
+                    Want to help us to grow together?
                 </h2>
                 <p className='text-gray-500 my-2'>
-                    Checkout these resources with 100 JavaScript Projects
+                    Contribute by paying ₹100 only and be part of our family
                 </p>
-                <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none' onClick={() => checkoutHandler(amount)}>
+                <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none' onClick={handleProceedtoPay}>
                     <h3>
                         Contribute Now
                     </h3>
                 </Button>
             </div>
             <div className="p-7 flex-1">
-                <img src="https://bairesdev.mo.cloudinary.net/blog/2023/08/What-Is-JavaScript-Used-For.jpg" />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL_DJTWAJkiLqytRew1MgW1hsfo9xKQX1vRw&usqp=CAU" />
             </div>
         </div>
     )

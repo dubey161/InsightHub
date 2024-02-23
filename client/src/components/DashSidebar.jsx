@@ -6,7 +6,10 @@ import {
     HiOutlineUserGroup,
     HiAnnotation,
     HiChartPie,
+    HiBookmark,
+    HiOutlineBookOpen,
 } from 'react-icons/hi';
+import { MdRocketLaunch } from "react-icons/md";
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { signoutSuccess } from '../redux/user/userSlice';
@@ -88,6 +91,28 @@ const DashSidebar = () => {
                                 icon={HiAnnotation}
                                 as='div'>
                                 Comments
+                            </Sidebar.Item>
+                        </Link>
+                    )}
+
+                    {currentUser.isAdmin && (
+                        <Link to='/dashboard?tab=allbook'>
+                            <Sidebar.Item
+                                active={tab == 'allbook'}
+                                icon={HiOutlineBookOpen}
+                                as='div'>
+                                All Books
+                            </Sidebar.Item>
+                        </Link>
+                    )}
+
+                    {currentUser.isAdmin && (
+                        <Link to='/dashboard?tab=book'>
+                            <Sidebar.Item
+                                active={tab == 'book'}
+                                icon={MdRocketLaunch}
+                                as='div'>
+                                Launch New Book
                             </Sidebar.Item>
                         </Link>
                     )}

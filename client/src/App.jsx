@@ -15,7 +15,11 @@ import UpdatePost from "./pages/UpdatePost"
 import PostPage from "./pages/PostPage"
 import ScrollToTp from './components/ScrollToTp';
 import Search from "./pages/Search";
-import Paymentsuccess from "./pages/paymentsuccess"
+import Paymentsuccess from "./pages/paymentsuccess";
+import BookPage from "./pages/BookPage";
+import ShowBooks from "./components/ShowBooks"
+import Cart from "./components/Cart"
+import Paymentfailure from "./pages/paymentfailure"
 function App() {
 
   return (
@@ -29,6 +33,8 @@ function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/search' element={<Search />} />
+        <Route path="/InSightHub-Books" element={<ShowBooks />} />
+        <Route path='/book/:bookSlug' element={<BookPage />} />
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<DashBoard />} />
         </Route>
@@ -37,9 +43,11 @@ function App() {
           <Route path="/create-post" element={<CreatePost />} />
           <Route path='/update-post/:postId' element={<UpdatePost />} />
         </Route>
+        <Route path="/cart" element={<Cart />} />
         <Route path='/projects' element={<Project />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
         <Route path='/paymentsuccess' element={<Paymentsuccess />} />
+        <Route path='/paymentfailure' element={<Paymentfailure />} />
       </Routes>
       <FooterComp />
     </BrowserRouter>
